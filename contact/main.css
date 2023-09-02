@@ -1,0 +1,44 @@
+/*=============== VARIABLES CSS ===============*/
+:root {
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: #491d8b;
+    --first-color-light: hsl(224, 100%, 50%);
+    --black-color: hsl(0, 0%, 95%);
+    --text-color: hsl(29, 8%, 65%);
+    --body-color: hsl(0, 0%, 100%);
+    --grid_color: rgba(211, 211, 211, 0.3) .1em, transparent .1em;
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    /* --body-font: "Poppins", sans-serif; */
+    --body-font: 'IBM Plex Sans', sans-serif;
+    --h3-font-size: 1.125rem;
+    --smaller-font-size: 0.75rem;
+}
+
+.outlinenone {
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	outline: none;
+}
+
+.glassyDiv{
+    border-radius: 15px;
+    box-shadow: 0 4px 16px hsla(29, 75%, 8%, 0.2);
+}
+
+.blue{
+    background-color: var(--first-color);
+    padding: 0.75rem;
+    border-radius: 3rem;
+    /* text-align: initial; */
+    box-shadow: 0 8px 24px hsla(29, 75%, 56%, 0.3);
+    color: aqua;   
+}
