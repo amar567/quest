@@ -284,6 +284,7 @@ Object.prototype.energyFlow = function (opt) {
 
     function render(t) {
       requestAnimationFrame(render);
+<<<<<<< Updated upstream
       hexagons.map((el, i) => {
         let speed = el.speed;
         if (el.charge > 1) {
@@ -348,6 +349,102 @@ Object.prototype.energyFlow = function (opt) {
 
         let wavesOnScreen = Math.ceil(
           options.size.width / options.size.height / 2
+=======
+  
+      function render(t) {
+        requestAnimationFrame(render);
+        hexagons.map((el, i) => {
+          let speed = el.speed;
+          if (el.charge > 1) {
+            speed *= el.charge;
+          }
+          el.x += speed;
+  
+          let templateWidth = options.size.width/2 ;
+          if (el.charge > 1) {
+            templateWidth = options.size.width * 2;
+          }
+  
+          if (el.x > templateWidth + 10) {
+            el.x *= -1;
+            el.y = getRandomYcoordinate(el.scale);
+          }
+          if (options.jiggle) {
+            el.y += (Math.random() < 0.5 ? -1 : 1) * el.jiggle ;
+          }
+  
+          el.tag.setAttribute("x", el.x);
+          el.tag.setAttribute("y", el.y);
+        });
+      }
+    };
+  
+    let createCurvature = (curvesCount) => {
+      let numberOfParts = 4;
+      let x = 0;
+  
+      let chunk = (options.size.width / curvesCount) / numberOfParts;
+      let range = 1 - options.flowRange;
+      let minY = (options.size.height - options.size.height * range) / 2;
+      let maxY = (options.size.height - minY);
+  
+      let middle = options.size.height / 2 ;
+      let curMinY = randomInterval(minY, middle * 0.95);
+      let curMaxY = randomInterval(middle * 1.05, maxY);
+  
+      let curve = `M ${x},${curMinY} C `;
+      let curveArr = [];
+      for (let i = 0; i < curvesCount; i++) {
+        curveArr.push(`${(x += chunk)},${curMinY}`);
+        curMinY = randomInterval(minY, middle * 0.95);
+        curMaxY = randomInterval(middle * 1.05, maxY);
+        curveArr.push(`${x},${curMaxY}`);
+        curveArr.push(`${(x += chunk)},${curMaxY}`);
+  
+        curveArr.push(`${(x += chunk)},${curMaxY}`);
+        curveArr.push(`${x},${curMinY}`);
+        curveArr.push(`${(x += chunk)},${curMinY}`);
+      }
+      curve += curveArr.join(" ");
+      return curve;
+    };
+    let createWaves = (count) => {
+      return Array(count)
+        .fill({})
+        .map((el, i) => {
+          el = {};
+          el.tag = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  
+          let wavesOnScreen = Math.ceil(
+            (options.size.width / options.size.height / 2) + 1
+          );
+          let curve = createCurvature(wavesOnScreen);
+          el.width = options.size.width;
+          el.tag.setAttribute("d", curve);
+  
+          el.tag.setAttribute("id", "wave_" + i);
+          el.tag.setAttribute("fill", "none");
+          el.tag.setAttribute("stroke-width", "2");
+          el.tag.setAttribute("stroke-opacity", ".7");
+  
+          return el;
+        });
+    };
+    let drawWaves = (container, waves) => {
+      container.querySelector("#waves").innerHTML = "";
+      container.querySelector("#wavesPaths").innerHTML = "";
+      waves.map((el, i) => {
+        container.querySelector("#wavesPaths").appendChild(el.tag);
+  
+        let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        use.setAttribute("href", "#wave_" + i);
+        use.setAttribute("stroke", options.colors[i]);
+        container.querySelector("#waves").appendChild(use);
+  
+        let useReversed = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "use"
+>>>>>>> Stashed changes
         );
         let curve = createCurvature(wavesOnScreen);
         el.width = options.size.width;
@@ -360,6 +457,7 @@ Object.prototype.energyFlow = function (opt) {
 
         return el;
       });
+<<<<<<< Updated upstream
   };
   let drawWaves = (container, waves) => {
     container.querySelector("#waves").innerHTML = "";
@@ -394,6 +492,22 @@ Object.prototype.energyFlow = function (opt) {
           
           [href='#wave_${i}'] {
             animation: waveStart_${i} ${duration}s linear, wave_${i} ${duration * 2
+=======
+    };
+    let animateWaves = (container, waves) => {
+      let style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+      waves.map((el, i) => {
+        let duration = options.duration;
+        duration *= (100 - (i + 1) * 10) / 100; // Y_translate
+        style.innerHTML += `
+            #wave_${i} {
+              transform: translateY(${randomInterval(-100, 0)-300}px); 
+            }
+            
+            [href='#wave_${i}'] {
+              animation: waveStart_${i} ${duration}s linear, wave_${i} ${
+          duration * 26
+>>>>>>> Stashed changes
         }s ${duration}s linear infinite;
           }
           @keyframes waveStart_${i}{
