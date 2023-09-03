@@ -43,7 +43,7 @@ ul {
 
 img {
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
 }
 
 /*=============== CARD ===============*/
@@ -262,6 +262,7 @@ header .navigation {
     display: flex;
     flex-direction: row;
     padding-left: 30px;
+    align-items: center;
 }
 
 header .navigation .logo {
@@ -309,8 +310,8 @@ header .navigation .menu-list li a {
     Intro Section
   =======================*/
 .intro-section {
-    height: 100vh;
-    position: relative;
+    /* height: 100vh; */
+    /* position: relative; */
     /* background: rgba(15, 20, 35, 0.9); */
     text-align: center;
 }
