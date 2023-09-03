@@ -279,7 +279,7 @@ header .navigation .menu-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 40%;
+    width: 70%;
     margin: auto 20px auto 0;
 }
 
@@ -297,7 +297,7 @@ header .navigation .humbarger .bar {
 
 header .navigation .menu-list li a {
     color: #b1d4e0;
-    font-size: 1.25rem;
+    font-size: 1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;

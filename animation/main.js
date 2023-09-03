@@ -341,10 +341,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
       let numberOfParts = 4;
       let x = 0;
   
-      let chunk = options.size.width / curvesCount / numberOfParts;
+      let chunk = (options.size.width / curvesCount) / numberOfParts;
       let range = 1 - options.flowRange;
       let minY = (options.size.height - options.size.height * range) / 2;
-      let maxY = options.size.height - minY;
+      let maxY = (options.size.height - minY);
   
       let middle = options.size.height / 2;
       let curMinY = randomInterval(minY, middle * 0.95);
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           el.tag = document.createElementNS("http://www.w3.org/2000/svg", "path");
   
           let wavesOnScreen = Math.ceil(
-            options.size.width / options.size.height / 2
+            (options.size.width / options.size.height / 2) + 1
           );
           let curve = createCurvature(wavesOnScreen);
           el.width = options.size.width;
@@ -416,7 +416,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         duration *= (100 - (i + 1) * 10) / 100;
         style.innerHTML += `
             #wave_${i} {
-              transform: translateY(${randomInterval(-10, 10)}px);
+              transform: translateY(${randomInterval(-100, 0)-300}px);
             }
             
             [href='#wave_${i}'] {
