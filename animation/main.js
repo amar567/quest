@@ -1,22 +1,68 @@
-//https://github.com/MityaUrchenko/energy-flow.git
+// Control variables
+const particles = 100;
+const duration = 8;
+const jiggle = 10;
+const colors = ["#0E80C0", "#53C1B0", "#52A6DD"];
+const size = { width: 2000, height: 1000 };
+// const size = { width: 500, height: 1200 };
+const waves = true;
+
+// For mobile keep size 500x1000 or some variation. 
+// And, take care of the rotation problem
+
+// https://github.com/MityaUrchenko/energy-flow.git
 document.addEventListener("DOMContentLoaded", function (event) {
-    // initiate energyFlow with params
-    // can work with jQuery
-    let container = document.querySelector(".energy-flow");
-    container.energyFlow({
-      particles: 200,
-      duration: 5,
-      jiggle: 5,
-      colors: ["#0E80C0", "#53C1B0", "#52A6DD"],
-      size: { width: 2000, height: 1000 },
-      waves: true
-    });
+  // initiate energyFlow with params
+  // can work with jQuery
+  let container = document.querySelector(".energy-flow");
+  container.energyFlow({
+    particles,
+    duration,
+    jiggle,
+    colors,
+    size,
+    waves
   });
+});
+
+// Object.prototype.energyFlow = function (opt) {
+//   let _this = this.length > 0 ? [...this] : [this];
+//   let defaultOptions = {
+//     particles: 250,
+//     duration: 5,
+//     jiggle: 5,
+//     size: { width: 2000, height: 1000 },
+//     colors: ["#0E80C0", "#53C1B0", "#52A6DD"],
+//     waves: true
+//   };
+
+//   let options = Object.assign(defaultOptions, opt);
+//   options.flowRange = 0.7;
+//   options.particleSize = 20;
+
+//   // ... rest of the code
+// }
+
+
+// //https://github.com/MityaUrchenko/energy-flow.git
+// document.addEventListener("DOMContentLoaded", function (event) {
+//     // initiate energyFlow with params
+//     // can work with jQuery
+//     let container = document.querySelector(".energy-flow");
+//     container.energyFlow({
+//       particles: 200,
+//       duration: 5,
+//       jiggle: 5,
+//       colors: ["#0E80C0", "#53C1B0", "#52A6DD"],
+//       size: { width: 2000, height: 1000 },
+//       waves: true
+//     });
+//   });
   
   Object.prototype.energyFlow = function (opt) {
     let _this = this.length > 0 ? [...this] : [this];
     let defaultOptions = {
-      particles: 250,
+      particles: 100,
       duration: 5,
       jiggle: 5,
       size: { width: 2000, height: 1000 },

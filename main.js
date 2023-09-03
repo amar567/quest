@@ -27,7 +27,7 @@ var currentScroll;
 
 
 // когда прокручивается страница
-window.addEventListener("scroll", throttle(callback, 250));
+window.addEventListener("scroll", throttle(callback, 100));
 
 // возвращает функцию через определенное количество времени
 function throttle(func, wait) {

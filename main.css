@@ -249,16 +249,18 @@ header .navigation {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    min-height: 12vh;
+    min-height: 16vh;
     min-width: 100%;
     z-index: 10;
-    background: #491d8b;
+    /* background: #491d8b; */
     font-weight: 600;
     /* background: #0f1423; */
     /* border-bottom: 2px solid #0c2d48; */
 }
 
 .logo{
+    display: flex;
+    flex-direction: row;
     padding-left: 30px;
 }
 
