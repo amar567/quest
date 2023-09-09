@@ -2,9 +2,10 @@
 
 * {
     /* margin: 0;
-    border: 0;
-    font-family: 'IBM Plex Sans', sans-serif; */
+    border: 0; */
+    font-family: 'IBM Plex Sans', sans-serif;
     z-index: 0;
+    /* text-shadow: 0 0 6px black; */
 }
 
 /* Track */
@@ -28,12 +29,12 @@ body {
   /* justify-content: center; */
   /* flex-direction: column; */
   /* background: #000d1a; */
-  background-color: rgb(0, 0, 0);
+  /* background-color: rgb(0, 0, 0); */
   /* background-color: #14004f; */
   background-color: #090034;
   color: rgb(255, 255, 255);
-  /* background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0); */
+  /* background-color: rgb(255, 255, 255); */
+  /* color: rgb(0, 0, 0); */
 }
 
 /* Hide both horizontal and vertical scrollbars */
@@ -68,4 +69,16 @@ body {
   /* align-items: end;
   justify-content: flex-end; */
   opacity: 0.7;
+}
+
+svg#energy-flow #hexagons{
+  scale: 1.1;
+  /* top: 50vh; */
+  /* position: absolute; */
+}
+
+svg#energy-flow #line{
+  scale: 1.1;
+  /* top: 50vh;
+  position: fixed; */
 }

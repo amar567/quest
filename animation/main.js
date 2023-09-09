@@ -1,26 +1,52 @@
 //https://github.com/MityaUrchenko/energy-flow.git
+
+
+// get height and width of the window
+// const height = window.innerHeight;
+// const width = window.innerWidth;
+
+// get height and width of the window
+const window_height = window.innerHeight;
+const window_width = window.innerWidth;
+const height_value = () => {
+  // depending on screen width decide number of particles
+  if (window_width < 786) {
+    return (1200)
+  } else {
+    return (window_height)
+  }
+};
+const width_value = () => {
+  // depending on screen width decide number of particles
+  if (window_width < 786) {
+    return (600)
+  } else {
+    return (window_width)
+  }
+};
+
+const height = height_value();
+const width = width_value();
+
 document.addEventListener("DOMContentLoaded", function (event) {
   // initiate energyFlow with params
   // can work with jQuery
   let container = document.querySelector(".energy-flow");
 
-  // get height and width of the window
-  const height = window.innerHeight * 1;
-  const width = window.innerWidth;
 
   // depending on screen width decide number of particles
   const particles = () => {
     if (width < 786) {
       return (30)
     } else {
-      return (200)
+      return (70)
     }
   }
 
   // Initialize the energyFlow animation with specified parameters
   container.energyFlow({
     particles: particles(), // Number of particles
-    duration: 5,    // Duration of the animation
+    duration: 8,    // Duration of the animation
     jiggle: 5,       // Jiggle factor
     colors: ["#0E80C0", "#53C1B0", "#52A6DD"], // Array of colors
     size: { width: width, height: height },        // Size of the animation canvas
@@ -29,8 +55,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 });
 
-particle_spread = 40
-y_shift_wave = 100
+if (width < 786) {
+
+  particle_spread = 40
+  y_shift_wave = 200
+  compress_wave = 0
+  number_of_waves = 5
+  shift_power_line = 0.4
+
+} else {
+
+  particle_spread = 40
+  y_shift_wave = 120
+  compress_wave = 0
+  number_of_waves = 5
+  shift_power_line = 0.55
+
+}
 
 Object.prototype.energyFlow = function (opt) {
   let _this = this.length > 0 ? [...this] : [this];
@@ -161,12 +202,12 @@ Object.prototype.energyFlow = function (opt) {
     let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute(
       "d",
-      `M-${options.size.width * 0.05} ${options.size.height / 2} L${options.size.width * 1.05
-      } ${options.size.height / 2}`
+      `M-${options.size.width * 0.05} ${options.size.height * shift_power_line} L${options.size.width * 1.05
+      } ${options.size.height * shift_power_line}`
     );
     path.setAttribute("stroke", options.colors[0]);
-    path.setAttribute("style", `filter: blur(${options.size.height / 4}px)`);
-    path.setAttribute("stroke-width", `${options.size.height /3}`);
+    path.setAttribute("style", `filter: blur(${options.size.height / 7}px)`);// manages glow
+    path.setAttribute("stroke-width", `${options.size.height / 3}`);
     path.setAttribute("stroke-opacity", ".4");
     return path;
   };
@@ -237,11 +278,11 @@ Object.prototype.energyFlow = function (opt) {
 
         // decides how much particle s will be spread 
         if (i < count * 0.7) {
-          scaleValues = [50-particle_spread, 70+particle_spread-10];
+          scaleValues = [60 - particle_spread, 70 + particle_spread];
         } else if (i < count * 0.9) {
-          scaleValues = [70-particle_spread, 80+particle_spread-10];
+          scaleValues = [70 - particle_spread, 80 + particle_spread ];
         } else {
-          scaleValues = [95-particle_spread, 105+particle_spread-10];
+          scaleValues = [95 - particle_spread, 105 + particle_spread ];
         }
 
         let scale = randomInterval(scaleValues[0], scaleValues[1]) / 100;
@@ -347,7 +388,7 @@ Object.prototype.energyFlow = function (opt) {
         el.tag = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
         let wavesOnScreen = Math.ceil(
-          options.size.width / options.size.height / 2
+          options.size.width / options.size.height / 2 + compress_wave
         );
         let curve = createCurvature(wavesOnScreen);
         el.width = options.size.width;
@@ -356,7 +397,7 @@ Object.prototype.energyFlow = function (opt) {
         el.tag.setAttribute("id", "wave_" + i);
         el.tag.setAttribute("fill", "none");
         el.tag.setAttribute("stroke-width", "2");
-        el.tag.setAttribute("stroke-opacity", ".7");
+        el.tag.setAttribute("stroke-opacity", "1");
 
         return el;
       });
@@ -389,7 +430,7 @@ Object.prototype.energyFlow = function (opt) {
       duration *= (100 - (i + 1) * 10) / 100;
       style.innerHTML += `
           #wave_${i} {
-            transform: translateY(${randomInterval(-10, 10)-y_shift_wave}px);
+            transform: translateY(${randomInterval(-10, 10) - y_shift_wave}px);
           }
           
           [href='#wave_${i}'] {
