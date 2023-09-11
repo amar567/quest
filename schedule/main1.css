@@ -1,7 +1,28 @@
+:root {
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: #491d8b;
+  --first-color-light: hsl(224, 100%, 50%);
+  --black-color: hsl(0, 0%, 95%);
+  --text-color: hsl(29, 8%, 65%);
+  --body-color: hsl(0, 0%, 100%);
+  --grid_color: rgba(211, 211, 211, 0.3) .1em, transparent .1em;
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  /* --body-font: "Poppins", sans-serif; */
+  --body-font: 'IBM Plex Sans', sans-serif;
+  --h3-font-size: 1.125rem;
+  --smaller-font-size: 0.75rem;
+}
+
+
+
+
 details {
-  color: white;
+  /* color: white; */
   transition: all 0.5s cubic-bezier(0.85, -1, 0.1, 1);
-  background: rgba(255, 255, 255, 0.521);
+  /* background: rgba(255, 255, 255, 0.521); */
   border-radius: 1.5em;
   padding: calc(1.5em/1.5);
   display: flex;
