@@ -10,17 +10,24 @@ const window_height = window.innerHeight;
 const window_width = window.innerWidth;
 const height_value = () => {
   // depending on screen width decide number of particles
-  if (window_width < 786) {
+  if (window_width < 600 ) {
     return (1200)
-  } else {
+    // return (window_height)
+  }
+  // else if (window_width < 786){
+  //     return (1000)
+  // }
+   else {
     return (window_height)
   }
 };
 const width_value = () => {
   // depending on screen width decide number of particles
-  if (window_width < 786) {
+  if (window_width < 600 ) {
     return (600)
-  } else {
+    // return (window_width)
+  } 
+  else {
     return (window_width)
   }
 };
@@ -32,14 +39,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // initiate energyFlow with params
   // can work with jQuery
   let container = document.querySelector(".energy-flow");
+  // console.log(container);
 
 
   // depending on screen width decide number of particles
   const particles = () => {
     if (width < 786) {
-      return (30)
+      return (10)
     } else {
-      return (70)
+      return (20)
     }
   }
 

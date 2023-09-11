@@ -2,13 +2,13 @@ $(document).ready(function(){
 
     //hamburger Toggle
     $('.humbarger').click(function(event){
-    $('.menu-list').slideToggle(500);
-    event.preventDefault();
+      $('.menu-list').slideToggle(500);
+      // event.preventDefault();
     
     $('.menu-list li a').click(function(event) {
         if ($(window).width() < 768) {
           $('.menu-list').slideUp(500);
-          // event.preventDefault(); 
+          event.preventDefault(); 
         }
       });
 });
@@ -58,6 +58,8 @@ function pushNavbar(lastScroll, currentScroll) {
   if (currentScroll > lastScroll)
     navbar.className = "navigation navbar navbar--hidden";
   // если вверх - показываем
-  else
-    navbar.className = "navigation navbar";
+  else if (currentScroll > 100) {
+    navbar.className = "navigation navbar makeNavVisible";
+  }
+  else navbar.className = "navigation navbar ";
 }
