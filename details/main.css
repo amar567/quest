@@ -16,7 +16,7 @@
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
     /* --body-font: "Poppins", sans-serif; */
-    --body-font: 'IBM Plex Sans', sans-serif;
+    /* --body-font: 'IBM Plex Sans', sans-serif; */
     --h3-font-size: 1.125rem;
     --smaller-font-size: 0.75rem;
 }

@@ -18,34 +18,40 @@ let speakerList = document.getElementById("cardContainer")
 // `
 
 let openDetailsPg = (data) => {
-    window.location.href = `/details/?id=${data}`
+    console.log(data);
+
+    // window.location.href = `/details/?id=${data}`
 }
 
 let initializeSpeakers = (data) => {
     speakerList.innerHTML = ``
     for (const profile in data) {
+        // console.log(profile);
+        // console.log(data[profile]["id"]);
+        // console.log(data[profile]["fields"]["image"]["0"]["thumbnails"]["large"]["url"]);
+        // console.log('%c ', 'font-size:100px; background:url('+data[profile]["fields"]["image"]["0"]["thumbnails"]["large"]["url"]+') no-repeat;');
         // console.log(data[profile]["Name"]);
 
         // console.log(data[profile]["Image name"] !== "hide");
 
-        if (data[profile]["Show?"] !== "hide") {
-            speakerList.innerHTML += `
+        // if (data[profile]["Show?"] !== "hide") {
+        speakerList.innerHTML += `
                 <div class="card">
                     <div class="card__border">
-                        <img src="/assets/speakers/${data[profile]["Image name"]}.png" alt="${data[profile]["Image name"]}" class="card__img" loading="lazy" />
+                        <img src="${data[profile]["fields"]["image"]["0"]["thumbnails"]["large"]["url"]}" alt="${data[profile]["fields"]["Name"]}" class="card__img" loading="lazy" />
                     </div>
 
-                    <h3 class="card__name">${data[profile]["Name"]}</h3>
-                    <span class="card__profession" style="color:black;">${data[profile]["Affiliation"]}</span>
+                    <h3 class="card__name">${data[profile]["fields"]["Name"]}</h3>
+                    <span class="card__profession" style="color:black;">${data[profile]["fields"]["Affiliation"]}</span>
 
-                    <div class="card__social " id="card-social" style="cursor: pointer;" onclick="openDetailsPg(${profile})">
+                    <div class="card__social " id="card-social" style="cursor: pointer;" onclick="openDetailsPg(${data[profile]["id"]})">
                         <div class="card__social-control">
                             Details
                         </div>
                     </div>
                 </div>
             `
-        }
+        // }
     }
 }
 
@@ -89,7 +95,7 @@ let initializeSpeakers = (data) => {
 //     let expires = "expires="+ d.toUTCString();
 //     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 //   }
-  
+
 
 //   function getCookie(cname) {
 //     let name = cname + "=";
@@ -107,48 +113,80 @@ let initializeSpeakers = (data) => {
 //     return "";
 //   }
 
-  if (localStorage.getItem("visit") !== "1") {
+if (localStorage.getItem("visit") !== "1") {
 
-      localStorage.setItem("visit","1")
-      console.log("yo");
+    localStorage.setItem("visit", "1")
+    //   console.log("yo");
 
     let loadWithDelay = setTimeout(() => {
-        var importdata = $.getJSON("./assets/data.json", function () {
-            data = importdata.responseJSON
-            initializeSpeakers(data)
-        })
-      
+        // var importdata = $.getJSON("./assets/data.json", function () {
+        //     data = importdata.responseJSON
+        //     initializeSpeakers(data)
+        // })
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer patuVo3SfOaHb3u1X.3708c2cae0c77c3f0fcb3721493cb9b3a5550da3047621309285b960cd5ee190");
+        // myHeaders.append("Cookie", "brw=brw0rfxEcgvyi3HqF; AWSALB=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw; AWSALBCORS=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw");
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://api.airtable.com/v0/app7QhhQi1XG3SuOc/tblJLb5LDt9E2rMVW", requestOptions)
+            .then(response => response.json())
+            .then(result => initializeSpeakers(result.records))
+            .catch(error => console.log('error', error));
+
         let yt = document.getElementById("youtube")
-      
-        yt.innerHTML = `
-        <iframe style="width: 560px;height: 315px;max-width: 90%;"
-        src="https://www.youtube.com/embed/videoseries?list=PLR02U0e82ziMoBYrRMuFLeXVNdAYWvT3Q"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-        `
-      
-      }, 2000);
-  } else {
+
+        // yt.innerHTML = `
+        // <iframe style="width: 560px;height: 315px;max-width: 90%;"
+        // src="https://www.youtube.com/embed/videoseries?list=PLR02U0e82ziMoBYrRMuFLeXVNdAYWvT3Q"
+        // title="YouTube video player" frameborder="0"
+        // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        // allowfullscreen></iframe>
+        // `
+
+    }, 1500);
+} else {
 
     // localStorage.setItem("lastname", "Smith");
     // localStorage.getItem("lastname");
 
     let loadWithDelay = setTimeout(() => {
-        var importdata = $.getJSON("./assets/data.json", function () {
-            data = importdata.responseJSON
-            initializeSpeakers(data)
-        })
-      
+        // var importdata = $.getJSON("./assets/data.json", function () {
+        //     data = importdata.responseJSON
+        //     initializeSpeakers(data)
+        // })
+
+        // let yt = document.getElementById("youtube")
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer patuVo3SfOaHb3u1X.3708c2cae0c77c3f0fcb3721493cb9b3a5550da3047621309285b960cd5ee190");
+        // myHeaders.append("Cookie", "brw=brw0rfxEcgvyi3HqF; AWSALB=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw; AWSALBCORS=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw");
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://api.airtable.com/v0/app7QhhQi1XG3SuOc/tblJLb5LDt9E2rMVW", requestOptions)
+            .then(response => response.json())
+            .then(result => initializeSpeakers(result.records))
+            .catch(error => console.log('error', error));
+
         let yt = document.getElementById("youtube")
-      
-        yt.innerHTML = `
-        <iframe style="width: 560px;height: 315px;max-width: 90%;"
-        src="https://www.youtube.com/embed/videoseries?list=PLR02U0e82ziMoBYrRMuFLeXVNdAYWvT3Q"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-        `
-      
-      }, 0);
-  }
+
+        // yt.innerHTML = `
+        // <iframe style="width: 560px;height: 315px;max-width: 90%;"
+        // src="https://www.youtube.com/embed/videoseries?list=PLR02U0e82ziMoBYrRMuFLeXVNdAYWvT3Q"
+        // title="YouTube video player" frameborder="0"
+        // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        // allowfullscreen></iframe>
+        // `
+
+    }, 0);
+}

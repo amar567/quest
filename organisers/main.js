@@ -3,18 +3,18 @@ var loadData = (data) => {
   for (const profile in data) {
     // console.log(data[profile]["Image name"]);
 
-    if (data[profile]["role"] === "organiser") {
+    if (data[profile]["fields"]["role"] === "Organiser") {
 
       let organiserSection = document.getElementById("organisers")
       organiserSection.innerHTML += `
         <div class="card">
           <div class="card__border">
-            <img src="/assets/people/${data[profile]["Image name"]}.png" alt="" class="card__img" loading="lazy" />
+            <img src="${data[profile]["fields"]["image"]["0"]["thumbnails"]["large"]["url"]}" alt="" class="card__img" loading="lazy" />
           </div>
 
-          <h3 class="card__name">${data[profile]["Name"]}</h3>
+          <h3 class="card__name">${data[profile]["fields"]["Name"]}</h3>
 
-          <div class="card__social " id="card-social" style="cursor: pointer;" onclick="mailto('${data[profile]["email"]}')">
+          <div class="card__social " id="card-social" style="cursor: pointer;" onclick="mailto('${data[profile]["fields"]["email"]}')">
               <div class="card__social-control">
                   E-mail
               </div>
@@ -23,18 +23,18 @@ var loadData = (data) => {
       `
     }
 
-    if (data[profile]["role"] === "codinator") {
+    if (data[profile]["fields"]["role"] === "Coordinator") {
       let cordinatorSection = document.getElementById("cordinator")
 
       cordinatorSection.innerHTML += `
         <div class="card">
           <div class="card__border">
-              <img src="/assets/people/${data[profile]["Image name"]}.png" alt="" class="card__img" loading="lazy" />
+              <img src="${data[profile]["fields"]["image"]["0"]["thumbnails"]["large"]["url"]}" alt="" class="card__img" loading="lazy" />
               </div>
               
-          <h3 class="card__name">${data[profile]["Name"]}</h3>
+          <h3 class="card__name">${data[profile]["fields"]["Name"]}</h3>
 
-          <div class="card__social " id="card-social" style="cursor: pointer;" onclick="mailto('${data[profile]["email"]}')">
+          <div class="card__social " id="card-social" style="cursor: pointer;" onclick="mailto('${data[profile]["fields"]["email"]}')">
               <div class="card__social-control">
                   E-mail
               </div>
@@ -88,10 +88,25 @@ let mailto = (link) => {
 
 
 setTimeout(() => {
-  const importdata = $.getJSON("/people/people_data.json", function () {
-    data = importdata.responseJSON
-    // console.log(data);
-    loadData(data)
-    // yo(data)
-  })
-}, 00);
+  // const importdata = $.getJSON("/organisers/people_data.json", function () {
+  //   data = importdata.responseJSON
+  //   // console.log(data);
+  //   loadData(data)
+  //   // yo(data)
+  // })
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer patuVo3SfOaHb3u1X.3708c2cae0c77c3f0fcb3721493cb9b3a5550da3047621309285b960cd5ee190");
+  // myHeaders.append("Cookie", "brw=brw0rfxEcgvyi3HqF; AWSALB=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw; AWSALBCORS=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw");
+
+  var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+  };
+  
+  fetch("https://api.airtable.com/v0/app7QhhQi1XG3SuOc/tblUTJkSAJWq5MliH", requestOptions)
+  .then(response => response.json())
+  .then(result => loadData(result.records))
+  .catch(error => console.log('error', error));
+}, 10);

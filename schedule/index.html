@@ -34,7 +34,7 @@
     <!-- external css -->
 
     <!-- local cs -->
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/main.css"> 
     <link rel="stylesheet" href="/animation/main.css">
 
     <!-- external js -->
@@ -45,7 +45,6 @@
 
 <body>
 
-    <script src="/animation/main.js"></script>
 
     <!--====== Header Section Start ======-->
     <header
@@ -55,31 +54,27 @@
         <nav class="navigation" id="navbar">
 
             <!-- Logo -->
-            <div class="logo">
-                <!-- <img class="scale_logo_resize" src="/assets/quest_light.png" alt="" style="width: 160px;height: 66.8px;"> -->
-                <img class="scale_logo_resize" src="/assets/quest_light.png" alt="" style="width: 100px;height: 41.75px;">
-                <!-- <div style="width: 40px;"></div> -->
-                <div style="width: 30px;"></div>
-                <!-- <img class="scale_logo_resize" src="/assets/iiserklogo.png" alt="" style="width: 70px;height: 77.59;"> -->
-                <img class="scale_logo_resize" src="/assets/iiserklogo.png" alt="" style="width: 43.75px;height: 48.50;">
-                <!-- <div style="width: 40px;"></div> -->
-                <div style="width: 30px;"></div>
-                <img class="scale_logo_resize" src="/assets/DST.svg" alt="" style="width: 87.5px;">
+            <div class="logo scale_logo_resize" >
+                <img class="questLogo" src="/assets/quest_light.png" alt="">
+                <div class="logoSpacing"></div>
+                <img class="iiserkLogo" src="/assets/iiserklogo.png" alt="">
+                <div class="logoSpacing"></div>
+                <img class="dstLogo" src="/assets/DST.svg" alt="">
             </div>
 
             <!-- Navigation -->
             <ul class="menu-list">
                 <li><a href="/">Home</a></li>
-                <li><a href="/people">Organisers</a></li>
+                <li><a href="/organisers/">Organisers</a></li>
                 <li><a href="/participants">Participants</a></li>
                 <li><a href="/schedule">Schedule</a></li>
                 <!-- <li><a href="/schedule">Sponsors/Organisers</a></li> -->
                 <li><a href="/contact/">Contact</a></li>
 
                 <!-- <li><a href="/contact">Contact</a></li> -->
-                <li><a target="_blank"
+                <!-- <li><a target="_blank"
                         href="https://drive.google.com/drive/folders/172eAdfgI7A_6N0dTqruK-Zr14FzOv93t?usp=share_link"><span>Resources</span></a>
-                </li>
+                </li> -->
             </ul>
 
             <div class="humbarger">
@@ -99,21 +94,24 @@
                 </h6>
                 <br>
                 <i style="text-shadow: 0 0 6px rgba(0, 0, 0, 0.234);">
-                    <h6>2<sup>nd</sup> National Symposium on Quantum Enabled Science and Technology</h6>
+                    <h6>3<sup>rd</sup> National Symposium on Quantum Enabled Science and Technology</h6>
                 </i>
-                <p class="tagline">
+                <br>
+                <!-- <p class="tagline">
                     <span class="change-container">
                         <span class="changing">Quantum Information</span>
                         <span class="changing">Quantum Optics</span>
                         <span class="changing">Quantum Chemistry</span>
                         <span class="changing">Quantum Foundation</span>
                         <span class="changing">Quantum Materials</span>
-                        <!-- <span class="changing">Quantum Computation</span> -->
                     </span>
-                </p>
+                </p> -->
+                <br>
+                <br>
+
                 <div class="header-btn animated bounceIn">
                     <a href="https://zoom.us/j/3972204395?pwd=T0ZhbWxyenBMcmRzZW5KL09pYTc2QT09">
-                        <span>Register Here</span>
+                        <span>Join Here</span>
                     </a>
                 </div>
                 <!-- social media -->
@@ -125,7 +123,9 @@
 
     <!--====== Youtube section ======-->
     <div
-        style="display: flex;flex-direction: row;min-height: 80vh;flex-wrap: wrap;align-content: center;justify-content: space-around;align-items: center;background-size: cover;background-image: url(/assets/bg.png);  background-position: center;background-repeat: no-repeat;background-attachment: fixed;">
+        style="display: flex;flex-direction: row;min-height: 80vh;flex-wrap: wrap;align-content: center;justify-content: space-around;align-items: center;background-size: cover;
+        /* background-image: url(/assets/bg.png);   */
+        background-position: center;background-repeat: no-repeat;background-attachment: fixed;">
         <div style="width: 40%;min-width: 400PX;display: flex;align-content: center;justify-content: space-around;align-items: center;"
             id="youtube">
             <img src="/assets/ytvid.png" alt="" style="width: 560px;height: 315px;max-width: 90%;object-fit: cover;">
@@ -192,9 +192,10 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="main.js"></script>
+    <script src="/main.js"></script>
     <!-- <script src="popup.js"></script> -->
-    <script src="speakers.js"></script>
+    <script src="/speakers.js"></script>
+    <script src="/animation/main.js"></script>
 </body>
 
 </html>

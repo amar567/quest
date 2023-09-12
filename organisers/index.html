@@ -40,22 +40,33 @@
 
     <!--====== Header Section Start ======-->
     <header
-        style="background-size: cover;background-image: url(../assets/bg.png);  background-position: center;background-repeat: no-repeat;background-attachment: fixed;">
+        style="background-size: cover;
+        /* background-image: url(/assets/bg.png);   */
+        background-position: center;background-repeat: no-repeat;background-attachment: fixed;z-index: 1;">
         <nav class="navigation" id="navbar">
 
             <!-- Logo -->
-            <div class="logo">
-                <img src="/assets/qiqt.png" alt="" style="width: 80px;">
+            <div class="logo scale_logo_resize" >
+                <img class="questLogo" src="/assets/quest_light.png" alt="">
+                <div class="logoSpacing"></div>
+                <img class="iiserkLogo" src="/assets/iiserklogo.png" alt="">
+                <div class="logoSpacing"></div>
+                <img class="dstLogo" src="/assets/DST.svg" alt="">
             </div>
 
             <!-- Navigation -->
             <ul class="menu-list">
                 <li><a href="/">Home</a></li>
-                <li><a href="/people">People</a></li>
+                <li><a href="/organisers/">Organisers</a></li>
+                <li><a href="/participants">Participants</a></li>
                 <li><a href="/schedule">Schedule</a></li>
-                <li><a href="/events">Events</a></li>
-<!-- <li><a href="/contact">Contact</a></li> -->
-                <li><a target="_blank" href="https://drive.google.com/drive/folders/172eAdfgI7A_6N0dTqruK-Zr14FzOv93t?usp=share_link"><span>Resources</span></a></li>
+                <!-- <li><a href="/schedule">Sponsors/Organisers</a></li> -->
+                <li><a href="/contact/">Contact</a></li>
+
+                <!-- <li><a href="/contact">Contact</a></li> -->
+                <!-- <li><a target="_blank"
+                        href="https://drive.google.com/drive/folders/172eAdfgI7A_6N0dTqruK-Zr14FzOv93t?usp=share_link"><span>Resources</span></a>
+                </li> -->
             </ul>
 
             <div class="humbarger">

@@ -1,34 +1,22 @@
-//https://github.com/MityaUrchenko/energy-flow.git
-
-
-// get height and width of the window
-// const height = window.innerHeight;
-// const width = window.innerWidth;
+// https://github.com/MityaUrchenko/energy-flow.git
 
 // get height and width of the window
 const window_height = window.innerHeight;
 const window_width = window.innerWidth;
+
 const height_value = () => {
-  // depending on screen width decide number of particles
-  if (window_width < 600 ) {
-    return (1200)
-    // return (window_height)
-  }
-  // else if (window_width < 786){
-  //     return (1000)
-  // }
-   else {
-    return (window_height)
+  if (window_width < 600) {
+    return 1200;
+  } else {
+    return window_height;
   }
 };
+
 const width_value = () => {
-  // depending on screen width decide number of particles
-  if (window_width < 600 ) {
-    return (600)
-    // return (window_width)
-  } 
-  else {
-    return (window_width)
+  if (window_width < 600) {
+    return 600;
+  } else {
+    return window_width;
   }
 };
 
@@ -36,60 +24,51 @@ const height = height_value();
 const width = width_value();
 
 document.addEventListener("DOMContentLoaded", function (event) {
-  // initiate energyFlow with params
-  // can work with jQuery
   let container = document.querySelector(".energy-flow");
-  // console.log(container);
 
-
-  // depending on screen width decide number of particles
   const particles = () => {
     if (width < 786) {
-      return (10)
+      return 10;
     } else {
-      return (20)
+      return 20;
     }
   }
 
-  // Initialize the energyFlow animation with specified parameters
-  container.energyFlow({
-    particles: particles(), // Number of particles
-    duration: 8,    // Duration of the animation
-    jiggle: 5,       // Jiggle factor
-    colors: ["#0E80C0", "#53C1B0", "#52A6DD"], // Array of colors
-    size: { width: width, height: height },        // Size of the animation canvas
-    waves: true,     // Enable or disable waves
-  });
+  const options = {
+    particles: particles(),
+    duration: 8,
+    jiggle: 5,
+    colors: ["#0E80C0", "#53C1B0", "#52A6DD"],
+    size: { width: width, height: height },
+    waves: true,
+  };
 
+  initiateEnergyFlow(container, options);
 });
 
 if (width < 786) {
-
-  particle_spread = 40
-  y_shift_wave = 200
-  compress_wave = 0
-  number_of_waves = 5
-  shift_power_line = 0.4
-
+  particle_spread = 40;
+  y_shift_wave = 200;
+  compress_wave = 0;
+  number_of_waves = 5;
+  shift_power_line = 0.4;
 } else {
-
-  particle_spread = 40
-  y_shift_wave = 120
-  compress_wave = 0
-  number_of_waves = 5
-  shift_power_line = 0.55
-
+  particle_spread = 40;
+  y_shift_wave = 120;
+  compress_wave = 0;
+  number_of_waves = 5;
+  shift_power_line = 0.55;
 }
 
-Object.prototype.energyFlow = function (opt) {
-  let _this = this.length > 0 ? [...this] : [this];
+function initiateEnergyFlow(container, opt) {
+  let _this = container.length > 0 ? [...container] : [container];
   let defaultOptions = {
     particles: 250,
     duration: 5,
     jiggle: 5,
     size: { width: 2000, height: 300 },
     colors: ["#0E80C0", "#53C1B0", "#52A6DD"],
-    waves: true
+    waves: true,
   };
 
   let options = Object.assign(defaultOptions, opt);
