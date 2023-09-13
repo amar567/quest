@@ -26,9 +26,13 @@ window.onscroll = function () {
     if (currentScrollPos > 100) {
       navbar.className = "navigation navbar makeNavVisible";
     }
-    $('.menu-list').slideUp(500);
+    if ($(window).width() < 768) {
+      $('.menu-list').slideUp(500);
+    }
   } else if (prevScrollpos < currentScrollPos) {
-    $('.menu-list').slideUp(500);
+    if ($(window).width() < 768) {
+      $('.menu-list').slideUp(500);
+    }
     navbar.className = "navigation navbar navbar--hidden";
   }
   prevScrollpos = currentScrollPos;
