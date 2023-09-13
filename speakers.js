@@ -18,9 +18,7 @@ let speakerList = document.getElementById("cardContainer")
 // `
 
 let openDetailsPg = (data) => {
-    console.log(data);
-
-    // window.location.href = `/details/?id=${data}`
+    window.location.href = `/details/?id=${data}`
 }
 
 let initializeSpeakers = (data) => {
@@ -44,7 +42,7 @@ let initializeSpeakers = (data) => {
                     <h3 class="card__name">${data[profile]["fields"]["Name"]}</h3>
                     <span class="card__profession" style="color:black;">${data[profile]["fields"]["Affiliation"]}</span>
 
-                    <div class="card__social " id="card-social" style="cursor: pointer;" onclick="openDetailsPg(${data[profile]["id"]})">
+                    <div class="card__social " id="card-social" style="cursor: pointer;" onclick="openDetailsPg('${data[profile]["id"]}')">
                         <div class="card__social-control">
                             Details
                         </div>
@@ -136,7 +134,12 @@ if (localStorage.getItem("visit") !== "1") {
 
         fetch("https://api.airtable.com/v0/app7QhhQi1XG3SuOc/tblJLb5LDt9E2rMVW", requestOptions)
             .then(response => response.json())
-            .then(result => initializeSpeakers(result.records))
+            .then(result =>{
+                result.records = result.records.sort(()=>{
+
+                })
+                 initializeSpeakers(result.records)
+            })
             .catch(error => console.log('error', error));
 
         let yt = document.getElementById("youtube")
@@ -175,7 +178,17 @@ if (localStorage.getItem("visit") !== "1") {
 
         fetch("https://api.airtable.com/v0/app7QhhQi1XG3SuOc/tblJLb5LDt9E2rMVW", requestOptions)
             .then(response => response.json())
-            .then(result => initializeSpeakers(result.records))
+            .then(result =>{
+                result.records.sort((a,b)=>{
+                    if (parseInt(a.fields.rank)>parseInt(b.fields.rank)) {
+                        return(1)
+                    } else {
+                        return(-1)
+                    }
+                })
+                // console.log(result.records);
+                return initializeSpeakers(result.records)
+            })
             .catch(error => console.log('error', error));
 
         let yt = document.getElementById("youtube")

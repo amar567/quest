@@ -39,6 +39,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     duration: 8,
     jiggle: 5,
     colors: ["#0E80C0", "#53C1B0", "#52A6DD"],
+    // colors: ["#5400cf", "#ffd300", "#ff00f5"],
+    waveColors:["#1bf2fa"],
+    // waveColors:["#1f84ff"],
+    // waveColors:["#ccff00"],
+    // waveColors:["#FFF01F"],
+    // waveColors:["#fff"],
+    powerlineColor:"#ff00f5",
     size: { width: width, height: height },
     waves: true,
   };
@@ -172,7 +179,7 @@ function initiateEnergyFlow(container, opt) {
           transform-box: fill-box; transform-origin: center;
         }
         svg#energy-flow #waves {
-          filter: drop-shadow( 0 0 5px rgba(255 255 255 / 80%))
+          filter: drop-shadow( 0 0 3px rgba(255 255 255 / 80%))
         }
         `;
     defsContainer.appendChild(styleContainer);
@@ -192,7 +199,7 @@ function initiateEnergyFlow(container, opt) {
       `M-${options.size.width * 0.05} ${options.size.height * shift_power_line} L${options.size.width * 1.05
       } ${options.size.height * shift_power_line}`
     );
-    path.setAttribute("stroke", options.colors[0]);
+    path.setAttribute("stroke", options.powerlineColor);
     path.setAttribute("style", `filter: blur(${options.size.height / 7}px)`);// manages glow
     path.setAttribute("stroke-width", `${options.size.height / 3}`);
     path.setAttribute("stroke-opacity", ".4");
@@ -397,7 +404,7 @@ function initiateEnergyFlow(container, opt) {
 
       let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
       use.setAttribute("href", "#wave_" + i);
-      use.setAttribute("stroke", options.colors[i]);
+      use.setAttribute("stroke", options.waveColors[0]);
       container.querySelector("#waves").appendChild(use);
 
       let useReversed = document.createElementNS(
@@ -406,7 +413,7 @@ function initiateEnergyFlow(container, opt) {
       );
       useReversed.setAttribute("href", "#wave_" + i);
       useReversed.setAttribute("class", "reversed");
-      useReversed.setAttribute("stroke", options.colors[i]);
+      useReversed.setAttribute("stroke", options.waveColors[0]);
       container.querySelector("#waves").appendChild(useReversed);
     });
   };

@@ -10,7 +10,10 @@
     --first-color: #491d8b;
     --first-color-light: hsl(224, 100%, 50%);
     --black-color: hsl(0, 0%, 95%);
+    /* --black-color: #ffd300; */
     --text-color: rgb(255, 255, 255);
+    /* --text-color: #ffd300; */
+    /* --text-color: #ff00f5; */
     /* --body-color: hsl(0, 0%, 100%); */
     --body-color: #090034;
     --grid_color: rgba(211, 211, 211, 0.3) .1em, transparent .1em;
@@ -96,7 +99,7 @@ img {
     padding: 1.25rem 2rem 3rem;
     border-radius: 1.5rem;
     text-align: center;
-    /* box-shadow: 0 4px 16px hsla(29, 75%, 8%, 0.2); */
+    /* box-shadow: 0 4px 16px #ffd50093; */
 }
 
 .card__img {
@@ -499,13 +502,13 @@ header .navigation .menu-list li a {
 
 .makeNavVisible{
     animation-name: darken;
-    animation-duration: 1s;
+    animation-duration: .8s;
     animation-fill-mode: forwards;
 }
 
 @keyframes darken {
     from {background-color: none;}
-    to {background-color:  rgba(0, 0, 0, 0.8);}
+    to {background-color:  #090034c8;}
   }
 
 /* ====================
@@ -567,9 +570,11 @@ header .navigation .menu-list li a {
 
     header .navigation .menu-list {
         position: absolute;
-        top: 12vh;
+        top: 16vh;
         min-width: 100%;
-        background: rgba(15, 20, 35, 0.99);
+        /* background: rgba(15, 20, 35, 0.99); */
+        /* background: var(--body-color); */
+        background: #090034c8;
         text-align: center;
         display: none;
     }

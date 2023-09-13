@@ -28,9 +28,9 @@
 }
 
 /* Optional: If you want to hide the thumb as well */
-::-webkit-scrollbar-thumb {
-  /* background: transparent; */
-}
+/* ::-webkit-scrollbar-thumb {
+  background: transparent;
+} */
 
 
 

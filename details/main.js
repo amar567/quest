@@ -1,14 +1,16 @@
 var loadData = (data) => {
-  let date = convertToLocalTime(data["Date (double click to pick)"],data["Time ( IST )"])
+  
+  [date,time] = convertToLocalTime(data["fields"]["Date"])
+
   let detailCard = document.getElementById("detailCard")
 
   detailCard.innerHTML = `
     <div id="" class=""
                 style="min-height: 85vh;display: flex;flex-direction: row;flex-wrap: wrap;flex-direction: row;flex-wrap: wrap;align-content: center;align-items: center;">
                 <div style="width: 40%;min-width: 400px; display: flex;flex-direction: column;align-items: center;">
-                    <img src="/assets/speakers/highres/${data["Image name"]}.png" alt="card image" style="width: 250px;border-radius: 50%;" />
-                    <h1 class="">${data["Name"]}</h1>
-                    <span class="">${data["Affiliation"]}</span>
+                    <img src="${data["fields"]["image"]["0"]["thumbnails"]["large"]["url"]}" alt="card image" style="width: 250px;border-radius: 50%;" />
+                    <h1 class="">${data["fields"]["Name"]}</h1>
+                    <span class="">${data["fields"]["Affiliation"]}</span>
                     <br>
                     <div class="details">
                         <svg data-v-c3d31587="" focusable="false" preserveAspectRatio="xMidYMid meet"
@@ -20,7 +22,7 @@ var loadData = (data) => {
                         </svg>
                         &nbsp;&nbsp;
                         <div>
-                          <b>${date[0]}</b>
+                          <b>${date}</b>
                         </div>
                     </div>
                     <div class="details">
@@ -34,22 +36,22 @@ var loadData = (data) => {
                         </svg>
                         &nbsp;&nbsp;
                         <div>
-                        <b>${date[1]} (IST)</b>
+                        <b>${time} (IST)</b>
                         </div>
                     </div>
                     <br/><br/>
                     <div>
                         <button
                             style="width: 100%;background-color: #FF0000;color: white;padding: 16px 24px;border-radius: 10px;outline: none;border: none;cursor: pointer;"
-                            onclick="redirect('${data["Link"]}')" >
+                            onclick="redirect('${data["fields"]["Youtube link"]}')" >
                             Watch on Youtube
                         </button>
                     </div>
                 </div>
                 <div style="width: 60%;min-width: 400px;padding: 0 30px;align-items: flex-start;">
-                    <h2 style="padding: 30px 0;">${data["Title"]}</h2>
+                    <h2 style="padding: 30px 0;">${data["fields"]["Title"]}</h2>
                     <p style="line-height: 2rem;text-align: justify;font-size: large;">
-                      ${data["Abstract"]}
+                    ${data["fields"]["Abstract"]}
                     </p>
                 </div>
             </div>
@@ -64,37 +66,64 @@ let redirect = (link) => {
   window.location.href = link
 }
 
-var importdata = $.getJSON("/assets/data.json", function () {
-  data = importdata.responseJSON
+// var importdata = $.getJSON("/assets/data.json", function () {
+//   data = importdata.responseJSON
+
+//   const queryString = window.location.search;
+//   const urlParams = new URLSearchParams(queryString);
+//   const id = urlParams.get('id')
+
+//   loadData(data[id])
+// })
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('id')
 
-  loadData(data[id])
-})
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer patuVo3SfOaHb3u1X.3708c2cae0c77c3f0fcb3721493cb9b3a5550da3047621309285b960cd5ee190");
+  // myHeaders.append("Cookie", "brw=brw0rfxEcgvyi3HqF; AWSALB=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw; AWSALBCORS=vmeTwWam+3nHyleK1+xzgkyzrMRvxIILqpaBnUpuNSYmrQixFLUrcZf5csM9jlNb7ePiReIiftzcGKCgRwkOqXzAXQ5JGcOelDXuqKxQ3tS4ek2tM8ch1+9kH3Zw");
 
+  var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+  };
+
+fetch("https://api.airtable.com/v0/app7QhhQi1XG3SuOc/tblJLb5LDt9E2rMVW/"+id, requestOptions)
+            .then(response => response.json())
+            .then(result =>{
+                loadData(result)
+            })
+            .catch(error => console.log('error', error));
 
 // convert to local time
 
 // Define input date and time strings  
-function convertToLocalTime(dateStr, timeStr) {
-  // let istDate = new Date(`${dateStr} ${timeStr} GMT+0530`);
-  // let istTimestamp = istDate.getTime();
-  // let utcTimestamp = istTimestamp - 330 * 60 * 1000;
-  // let offset = new Date().getTimezoneOffset();
-  // let localTimestamp = utcTimestamp - offset * 60 * 1000;
-  // let localDate = new Date(localTimestamp);
+function convertToLocalTime(dateStr) {
 
-  // let localDateStr = localDate.toLocaleDateString();
-  // let localTimeStr = localDate.toLocaleTimeString();
-  // // var zone = Intl.DateTimeFormat().resolvedOptions().timeZone            // "America/Los_Angeles"
-  // let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+// Create a Date object from the UTC string
+const utcDate = new Date(dateStr);
 
-  // console.log(localDateStr,localTimeStr,timezone);
-  // return([localDateStr,localTimeStr,timezone])
+// Get the year, month, day, hours, minutes, and seconds in IST
+const year = utcDate.getUTCFullYear();
+const month = utcDate.getUTCMonth();
+const day = utcDate.getUTCDate();
+const hours = utcDate.getUTCHours() + 5; // Add 5 hours to convert to IST
+const minutes = utcDate.getUTCMinutes() + 30; // Add 30 minutes to convert to IST
+const seconds = utcDate.getUTCSeconds();
 
-  timeStr = timeStr.replace(":00 "," ")
+// Create a new Date object with the IST values
+const istDate = new Date(year, month, day, hours, minutes, seconds);
 
-  return([dateStr,timeStr])
+// Format the IST date as a string
+const istDateString = istDate.toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+
+// console.log("UTC Date:", dateStr);
+// console.log("IST Date:", istDateString);
+
+// console.log(istDateString.split(", "));
+  // timeStr = timeStr.replace(":00 "," ")
+
+  return(istDateString.split(", "))
 }
