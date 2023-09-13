@@ -448,7 +448,7 @@ header .navigation .menu-list li a {
     color: #002036;
     background-color: #b1d4e0;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 25px;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -614,7 +614,7 @@ header .navigation .menu-list li a {
     }
 
     .intro-section .intro-content .header-btn a {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 
 }
