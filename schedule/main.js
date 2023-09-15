@@ -34,7 +34,7 @@ Date.prototype.getDayoftheyr = function () {
   return dayOfYear
 };
 
-var importdata = $.getJSON("/assets/data.json", function () {
+var importdata = $.getJSON("../assets/data.json", function () {
   data = importdata.responseJSON
 
   let weeks = {
@@ -116,7 +116,7 @@ var importdata = $.getJSON("/assets/data.json", function () {
     for (const j in weeks[`${i}`]) {
       // each day day goes here
 
-      let temp = weeks[`${i}`][`${j}`][0]["Date (double click to pick)"].split("/")
+      let temp = weeks[`${i}`][`${j}`][0]["Date (double click to pick)"].split("../")
 
       let date = "Day" + String(parseInt(j) - 127) + "&nbsp&nbsp" + temp[1] + "&minus;" + temp[0] + "&minus;" + temp[2]
 
@@ -132,7 +132,7 @@ var importdata = $.getJSON("/assets/data.json", function () {
               <summary>
                 <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
                   <div style="height: 10px;"></div>
-                  <img src="/assets/speakers/${element["Image name"]}.png" alt="" style="width:100px;border-radius: 100%;
+                  <img src="../assets/speakers/${element["Image name"]}.png" alt="" style="width:100px;border-radius: 100%;
                     /* border: solid rgb(51, 255, 0) 10px; */
                     ">
                   <h3 style="width: max-content;">${element["Name"]}</h3>

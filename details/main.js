@@ -66,7 +66,7 @@ let redirect = (link) => {
   window.location.href = link
 }
 
-// var importdata = $.getJSON("/assets/data.json", function () {
+// var importdata = $.getJSON("../assets/data.json", function () {
 //   data = importdata.responseJSON
 
 //   const queryString = window.location.search;

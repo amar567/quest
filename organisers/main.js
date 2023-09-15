@@ -41,7 +41,7 @@ var loadData = (data) => {
           </div>
           </div>
           `
-          // <img src="/assets/people/${data[profile]["Image name"]}.png" alt="" class="card__img" loading="lazy" />
+          // <img src="../assets/people/${data[profile]["Image name"]}.png" alt="" class="card__img" loading="lazy" />
         }
   }
 }
@@ -60,9 +60,9 @@ var loadData = (data) => {
 // newdata = []
 // let yo = async(data)=>{
 //   for (const profile in data) {
-//     const response = $.getJSON("https://firebasestorage.googleapis.com/v0/b/qiqt-71960.appspot.com/o/"+data[profile]["Image name"]+".png", function () {
+//     const response = $.getJSON("https://firebasestorage.googleapis.com/v0/b/QuEST-71960.appspot.com/o/"+data[profile]["Image name"]+".png", function () {
 //       data2 = response.responseJSON
-//       let Imglink = "https://firebasestorage.googleapis.com/v0/b/qiqt-71960.appspot.com/o/"+data[profile]["Image name"]+".png?alt=media&token="+data2["downloadTokens"]
+//       let Imglink = "https://firebasestorage.googleapis.com/v0/b/QuEST-71960.appspot.com/o/"+data[profile]["Image name"]+".png?alt=media&token="+data2["downloadTokens"]
 //       data[profile]["Imglink"] = Imglink
 //       newdata.push(data[profile])
 //     })
@@ -88,7 +88,7 @@ let mailto = (link) => {
 
 
 setTimeout(() => {
-  // const importdata = $.getJSON("/organisers/people_data.json", function () {
+  // const importdata = $.getJSON("../organisers/people_data.json", function () {
   //   data = importdata.responseJSON
   //   // console.log(data);
   //   loadData(data)
