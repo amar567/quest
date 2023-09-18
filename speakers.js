@@ -18,7 +18,7 @@ let speakerList = document.getElementById("cardContainer")
 // `
 
 let openDetailsPg = (data) => {
-    window.location.href = `/details/?id=${data}`
+    window.location.href = `./details/?id=${data}`
 }
 
 let initializeSpeakers = (data) => {
